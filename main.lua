@@ -369,7 +369,7 @@ local function fetchAndParseJSON(url)
 end
 
 -- Example URL (replace with your actual URL to JSON data)
-local dataUrl = "https://raw.githubusercontent.com/your-username/your-repository/main/your-json-file.json"
+local dataUrl = "https://github.com/oliverbeetle11/ghoulRE/tree/main/config/1.json"
 
 -- Fetch and handle the JSON data
 local data = fetchAndParseJSON(dataUrl)
