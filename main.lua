@@ -1,3 +1,4 @@
+print("Initializing")
 local HttpService = game:GetService("HttpService")
 local InsertService = game:GetService("InsertService")
 
