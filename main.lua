@@ -1,6 +1,11 @@
--- Require the JSON module
 local HttpService = game:GetService("HttpService")
-local json = require(80796403604642)
+local InsertService = game:GetService("InsertService")
+
+local jsonModule = InsertService:LoadAsset(80796403604642)
+jsonModule.Parent = game.ReplicatedStorage
+
+local json = require(jsonModule:GetChildren()[1])
+
 
 -- Function to fetch and parse JSON data
 local function fetchAndParseJSON(url)
