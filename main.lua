@@ -536,7 +536,7 @@ local function DirectionCheck(character1, character2)
 	local dotProduct1 = lookVector1:Dot(vectorBetween)
 	local dotProduct2 = lookVector2:Dot(-vectorBetween)
 
-	return dotProduct1 > 0.6 and dotProduct2 > 0.5
+	return dotProduct1 > 0.5 and dotProduct2 > 0.5
 end
 
 local function onCharacterAdded(character)
