@@ -443,7 +443,7 @@ local function onCharacterAdded(character)
 				local move = movedata[animationTrack.Animation.AnimationId]
 				if move.Wait and LocalPlayer.Character then
 					coroutine.wrap(function()
-						task.wait(move.Wait / 1000 - PingCompensation and math.abs(Ping - 25) or 0)
+						task.wait(move.Wait / 1000 - (PingCompensation and math.abs(Ping - 25) or 0))
 						if (LocalPlayer.Character.HumanoidRootPart.CFrame.Position - character.HumanoidRootPart.CFrame.Position).Magnitude <= move.Range then
 							local args = {
 								[1] = {
