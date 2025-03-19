@@ -428,6 +428,38 @@ UIBind.FocusLost:Connect(function(enterPressed, input)
 	end
 end)
 
+local function AnimationCheck(character, animationId)
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if not humanoid then return false end
+
+	local animator = humanoid:FindFirstChildOfClass("Animator")
+	if not animator then return false end
+
+	local tracks = animator:GetPlayingAnimationTracks()
+	for _, track in ipairs(tracks) do
+		if track.Animation.AnimationId == animationId then
+			return true
+		end
+	end
+
+	return false
+end
+
+local function DirectionCheck(character1, character2)
+	local rootPart1 = character1 and character1:FindFirstChild("HumanoidRootPart")
+	local rootPart2 = character2 and character2:FindFirstChild("HumanoidRootPart")
+	if not rootPart1 or not rootPart2 then return false end
+
+	local lookVector1 = rootPart1.CFrame.LookVector
+	local lookVector2 = rootPart2.CFrame.LookVector
+	local vectorBetween = (rootPart2.Position - rootPart1.Position).unit
+
+	local dotProduct1 = lookVector1:Dot(vectorBetween)
+	local dotProduct2 = lookVector2:Dot(-vectorBetween)
+
+	return dotProduct1 > 0.6 and dotProduct2 > 0.5
+end
+
 local function onCharacterAdded(character)
 	if character == LocalPlayer.Character then return end
 	
@@ -444,7 +476,7 @@ local function onCharacterAdded(character)
 				if move.Wait and LocalPlayer.Character then
 					coroutine.wrap(function()
 						task.wait(move.Wait / 1000 - (PingCompensation and math.abs(Ping - 25) or 0))
-						if (LocalPlayer.Character.HumanoidRootPart.CFrame.Position - character.HumanoidRootPart.CFrame.Position).Magnitude <= move.Range then
+						if (LocalPlayer.Character.HumanoidRootPart.CFrame.Position - character.HumanoidRootPart.CFrame.Position).Magnitude <= move.Range and DirectionCheck(LocalPlayer.Character, character) and AnimationCheck(character, animationTrack.Animation.AnimationId) then
 							local args = {
 								[1] = {
 									[1] = {
