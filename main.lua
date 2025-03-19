@@ -1,9 +1,9 @@
 movedata = {
-	['rbxassetid://77200481731064'] = {RepeatCount = 0;Name = '1';RepeatDelay = 0;Range = 30;Wait = 290;},
-	['rbxassetid://90222174246856'] = {RepeatCount = 0;Name = '2';RepeatDelay = 0;Range = 30;Wait = 170;},
-	['rbxassetid://109153497237538'] = {RepeatCount = 0;Name = '3';RepeatDelay = 0;Range = 30;Wait = 190;},
-	['rbxassetid://77165655925697'] = {RepeatCount = 0;Name = '4';RepeatDelay = 0;Range = 30;Wait = 180;},
-	['rbxassetid://123196114390104'] = {RepeatCount = 0;Name = '5';RepeatDelay = 0;Range = 30;Wait = 210;},
+	['rbxassetid://77200481731064'] = {RepeatCount = 0;Name = '1';RepeatDelay = 0;Range = 12;Wait = 290;},
+	['rbxassetid://90222174246856'] = {RepeatCount = 0;Name = '2';RepeatDelay = 0;Range = 12;Wait = 170;},
+	['rbxassetid://109153497237538'] = {RepeatCount = 0;Name = '3';RepeatDelay = 0;Range = 12;Wait = 190;},
+	['rbxassetid://77165655925697'] = {RepeatCount = 0;Name = '4';RepeatDelay = 0;Range = 12;Wait = 180;},
+	['rbxassetid://123196114390104'] = {RepeatCount = 0;Name = '5';RepeatDelay = 0;Range = 12;Wait = 210;},
 	['rbxassetid://79780873512551'] = {RepeatCount = 0;Name = 'aus1';RepeatDelay = 0;Range = 30;Wait = 150;},
 	['rbxassetid://91417655657970'] = {RepeatCount = 0;Name = 'aus2';RepeatDelay = 0;Range = 30;Wait = 150;},
 	['rbxassetid://124496925241237'] = {RepeatCount = 0;Name = 'aus3';RepeatDelay = 0;Range = 30;Wait = 150;},
@@ -83,10 +83,10 @@ movedata = {
 	['rbxassetid://125084555032360'] = {RepeatCount = 0;Name = 'hit5';RepeatDelay = 0;Range = 30;Wait = 150;},
 	['rbxassetid://75078726065204'] = {RepeatCount = 0;RepeatParryDelay = 0;RepeatDelay = 0;Range = 30;Wait = 150;DelayDistance = 0;Name = 'Infiltration';RepeatParryAmount = 0;Roll = true;Custom = false;},
 	['rbxassetid://130277667485774'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'InstantLunge';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
-	['rbxassetid://115413666205678'] = {RepeatCount = 0;Name = 'IXA1';RepeatDelay = 0;Range = 30;Wait = 150;},
-	['rbxassetid://129495651539604'] = {RepeatCount = 0;Name = 'IXA2';RepeatDelay = 0;Range = 30;Wait = 150;},
-	['rbxassetid://101523256677778'] = {RepeatCount = 0;Name = 'IXA3';RepeatDelay = 0;Range = 30;Wait = 150;},
-	['rbxassetid://128839194087258'] = {RepeatCount = 0;Name = 'IXA4';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://115413666205678'] = {RepeatCount = 0;Name = 'IXA1';RepeatDelay = 0;Range = 12;Wait = 150;},
+	['rbxassetid://129495651539604'] = {RepeatCount = 0;Name = 'IXA2';RepeatDelay = 0;Range = 12;Wait = 150;},
+	['rbxassetid://101523256677778'] = {RepeatCount = 0;Name = 'IXA3';RepeatDelay = 0;Range = 12;Wait = 150;},
+	['rbxassetid://128839194087258'] = {RepeatCount = 0;Name = 'IXA4';RepeatDelay = 0;Range = 12;Wait = 150;},
 	['rbxassetid://76467866872093'] = {RepeatCount = 0;Name = 'IxaRangeCrit';RepeatDelay = 0;Range = 30;Wait = 180;},
 	['rbxassetid://78887381717473'] = {RepeatCount = 0;Name = 'IXA_Thrust';RepeatDelay = 0;Range = 30;Wait = 410;},
 	['rbxassetid://130687440100798'] = {RepeatCount = 0;Name = 'IXA barrage cast';RepeatDelay = 0;Range = 30;Wait = 240;},
@@ -179,7 +179,7 @@ movedata = {
 	['rbxassetid://129618429137267'] = {RepeatCount = 0;Name = 'Triple Kick';RepeatDelay = 0;Range = 30;Wait = 150;},
 	['rbxassetid://135872625391687'] = {RepeatCount = 0;RepeatParryDelay = 300;RepeatDelay = 0;Range = 40;Wait = 300;DelayDistance = 0;Name = 'UkakuShardShootGroun';RepeatParryAmount = 1;Hold = false;},
 	['rbxassetid://74706986010083'] = {RepeatCount = 0;Name = 'universal fifth';RepeatDelay = 0;Range = 30;Wait = 130;},
-	['rbxassetid://126930390220804'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Uppercut Part 1';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 200;},
+	['rbxassetid://126930390220804'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Uppercut Part 1';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
 	['rbxassetid://123818970722547'] = {RepeatCount = 0;RepeatParryDelay = 300;Name = 'X';RepeatDelay = 0;RepeatParryAmount = 1;DelayDistance = 0;Range = 30;Wait = 300;},
 	['rbxassetid://138545708561292'] = {RepeatCount = 0;Name = 'X Skill';RepeatDelay = 0;Range = 30;Wait = 230;},
 	['rbxassetid://111230499786651'] = {RepeatCount = 0;Name = 'Yamada - 1';RepeatDelay = 0;Range = 30;Wait = 170;},
@@ -193,64 +193,299 @@ movedata = {
 	['rbxassetid://136449717558100'] = {RepeatCount = 0;Name = ' 2 handed flouris re';RepeatDelay = 0;Range = 30;Wait = 140;},
 }
 
-print("Loading")
+print("loading beetle's ap ui")
 
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
+
 local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+
+local ScreenGui = Instance.new("ScreenGui", LocalPlayer.PlayerGui)
+local MainFrame = Instance.new("Frame", ScreenGui)
+local Topbar = Instance.new("Frame", MainFrame)
+
+ScreenGui.ResetOnSpawn = false
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
+
+MainFrame.BackgroundColor3 = Color3.fromRGB(15,15,15)
+MainFrame.Position = UDim2.new(0.5,0,0.5,0)
+MainFrame.Size = UDim2.new(0,150,0,88)
+MainFrame.AnchorPoint = Vector2.new(0,-0.5)
+
+Topbar.BackgroundColor3 = Color3.fromRGB(0,0,0)
+Topbar.Size = UDim2.new(0,150,0,16)
+
+local UIStroke = Instance.new("UIStroke", MainFrame)
+UIStroke.Color = Color3.new(1,1,1)
+local UIStroke = UIStroke:Clone()
+UIStroke.Parent = Topbar
+
+local DefaultTextLabel = Instance.new("TextLabel", MainFrame)
+DefaultTextLabel.BackgroundTransparency = 1
+DefaultTextLabel.Size = UDim2.new(0,75,0,17)
+DefaultTextLabel.ZIndex = 5
+DefaultTextLabel.TextColor3 = Color3.new(1,1,1)
+DefaultTextLabel.TextXAlignment = Enum.TextXAlignment.Left
+DefaultTextLabel.TextYAlignment = Enum.TextYAlignment.Top
+DefaultTextLabel.TextStrokeTransparency = 0
+
+local Title = DefaultTextLabel:Clone()
+local APLabel = DefaultTextLabel:Clone()
+local APBindLabel = DefaultTextLabel:Clone()
+local PingLabel = DefaultTextLabel:Clone()
+local UIBindLabel = DefaultTextLabel:Clone()
+
+Title.Size = UDim2.new(0,150,0,6)
+
+Title.Parent = MainFrame
+APLabel.Parent = MainFrame
+APBindLabel.Parent = MainFrame
+PingLabel.Parent = MainFrame
+UIBindLabel.Parent = MainFrame
+
+APLabel.Position = UDim2.new(0,0,0,15)
+APBindLabel.Position = UDim2.new(0,0,0,50)
+PingLabel.Position = UDim2.new(0,0,0,33)
+UIBindLabel.Position = UDim2.new(0,0,0,67)
+
+Title.Text = "beetle's ap"
+APLabel.Text = "Autoparry"
+APBindLabel.Text = "AP keybind"
+PingLabel.Text = "Ping comp."
+UIBindLabel.Text = "UI keybind"
+
+DefaultTextLabel:Destroy()
+
+local DefaultUIPadding = Instance.new("UIPadding", Title)
+DefaultUIPadding.PaddingLeft = UDim.new(0.1,0)
+DefaultUIPadding.PaddingTop = UDim.new(0.2,0)
+
+local UIPadding = DefaultUIPadding:Clone()
+UIPadding.Parent = APLabel
+local UIPadding = DefaultUIPadding:Clone()
+UIPadding.Parent = APBindLabel
+local UIPadding = DefaultUIPadding:Clone()
+UIPadding.Parent = PingLabel
+local UIPadding = DefaultUIPadding:Clone()
+UIPadding.Parent = UIBindLabel
+
+DefaultUIPadding.PaddingLeft = UDim.new(0.02,0)
+
+local APButton = Instance.new("TextButton", MainFrame)
+local PingButton = Instance.new("TextButton", MainFrame)
+local APBind = Instance.new("TextBox", MainFrame)
+local UIBind = Instance.new("TextBox", MainFrame)
+
+APButton.BackgroundColor3 = Color3.new(0,0,0)
+APButton.BorderColor3 = Color3.new(1,1,1)
+APButton.BorderSizePixel = 1
+APButton.Position = UDim2.new(0,103,0,21)
+APButton.Size = UDim2.new(0,40,0,11)
+APButton.Text = "OFF"
+APButton.TextColor3 = Color3.new(1,1,1)
+
+PingButton.BackgroundColor3 = Color3.new(0,0,0)
+PingButton.BorderColor3 = Color3.new(1,1,1)
+PingButton.BorderSizePixel = 1
+PingButton.Position = UDim2.new(0,103,0,38)
+PingButton.Size = UDim2.new(0,40,0,11)
+PingButton.Text = "OFF"
+PingButton.TextColor3 = Color3.new(1,1,1)
+
+APBind.BackgroundColor3 = Color3.new(0,0,0)
+APBind.BorderColor3 = Color3.new(1,1,1)
+APBind.BorderSizePixel = 1
+APBind.Position = UDim2.new(0,103,0,56)
+APBind.Size = UDim2.new(0,40,0,11)
+APBind.TextColor3 = Color3.new(1,1,1)
+APBind.PlaceholderText = "P"
+APBind.Text = "P"
+
+UIBind.BackgroundColor3 = Color3.new(0,0,0)
+UIBind.BorderColor3 = Color3.new(1,1,1)
+UIBind.BorderSizePixel = 1
+UIBind.Position = UDim2.new(0,103,0,73)
+UIBind.Size = UDim2.new(0,40,0,11)
+UIBind.TextColor3 = Color3.new(1,1,1)
+UIBind.PlaceholderText = "M"
+UIBind.Text = "M"
+
+local DragConnection
+Topbar.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		local OriginalFramePosition = MainFrame.AbsolutePosition
+		local MouseX, MouseY = Mouse.X, Mouse.Y
+		DragConnection = RunService.Heartbeat:Connect(function(dt)
+			MainFrame.Position = UDim2.new(0,OriginalFramePosition.X - MouseX + Mouse.X,0,OriginalFramePosition.Y - MouseY + Mouse.Y + 44)
+		end)
+	end
+end)
+
+Topbar.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		DragConnection:Disconnect()
+	end
+end)
+
+local APKeycode = Enum.KeyCode.P
+local UIKeycode = Enum.KeyCode.M
+
+local AutoParryEnabled = false
+local PingCompensation = false
+
+local Ping = LocalPlayer:GetNetworkPing() * 2000
+
+local elapsedTime = 0
+local PingConnection = RunService.Heartbeat:Connect(function(dt)
+	elapsedTime += dt
+	if elapsedTime // 3 then
+		elapsedTime -= 3
+		Ping = LocalPlayer:GetNetworkPing() * 2000
+		print(Ping)
+	end
+end)
+
+APButton.MouseButton1Click:Connect(function()
+	AutoParryEnabled = not AutoParryEnabled
+	if AutoParryEnabled then
+		APButton.BackgroundColor3 = Color3.new(1,1,1)
+		APButton.TextColor3 = Color3.new(0,0,0)
+		APButton.Text = "ON"
+	else
+		APButton.BackgroundColor3 = Color3.new(0,0,0)
+		APButton.TextColor3 = Color3.new(1,1,1)
+		APButton.Text = "OFF"
+	end
+end)
+
+PingButton.MouseButton1Click:Connect(function()
+	PingCompensation = not PingCompensation
+	if PingCompensation then
+		PingButton.BackgroundColor3 = Color3.new(1,1,1)
+		PingButton.TextColor3 = Color3.new(0,0,0)
+		PingButton.Text = "ON"
+	else
+		PingButton.BackgroundColor3 = Color3.new(0,0,0)
+		PingButton.TextColor3 = Color3.new(1,1,1)
+		PingButton.Text = "OFF"
+	end
+end)
+
+UserInputService.InputBegan:Connect(function(input, GPE)
+	if not GPE then
+		if input.KeyCode == APKeycode then
+			AutoParryEnabled = not AutoParryEnabled
+			if AutoParryEnabled then
+				APButton.BackgroundColor3 = Color3.new(1,1,1)
+				APButton.TextColor3 = Color3.new(0,0,0)
+				APButton.Text = "ON"
+			else
+				APButton.BackgroundColor3 = Color3.new(0,0,0)
+				APButton.TextColor3 = Color3.new(1,1,1)
+				APButton.Text = "OFF"
+			end
+		elseif input.KeyCode == UIKeycode then
+			ScreenGui.Enabled = not ScreenGui.Enabled
+		end
+	end
+end)
+
+APBind.FocusLost:Connect(function(enterPressed, input)
+	if enterPressed then
+		local success, response = pcall(function()
+			if Enum.KeyCode[string.upper(APBind.Text)] then
+				APKeycode = Enum.KeyCode[string.upper(APBind.Text)]
+				APBind.PlaceholderText = string.upper(APBind.Text)
+				APBind.Text = string.upper(APBind.Text)
+			end
+		end)
+		
+		if not success then
+			APBind.Text = APBind.PlaceholderText
+		end
+	else
+		APBind.Text = APBind.PlaceholderText
+	end
+end)
+
+UIBind.FocusLost:Connect(function(enterPressed, input)
+	if enterPressed then
+		local success, response = pcall(function()
+			if Enum.KeyCode[string.upper(UIBind.Text)] then
+				UIKeycode = Enum.KeyCode[string.upper(UIBind.Text)]
+				UIBind.PlaceholderText = string.upper(UIBind.Text)
+				UIBind.Text = string.upper(UIBind.Text)
+			end
+		end)
+
+		if not success then
+			UIBind.Text = UIBind.PlaceholderText
+		end
+	else
+		UIBind.Text = UIBind.PlaceholderText
+	end
+end)
 
 local function onCharacterAdded(character)
-    local humanoid = character:FindFirstChildOfClass("Humanoid")
-    if not humanoid then return end
+	if character == LocalPlayer.Character then return end
+	
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if not humanoid then return end
 
-    local animator = humanoid:FindFirstChildOfClass("Animator")
-    if not animator then return end
+	local animator = humanoid:FindFirstChildOfClass("Animator")
+	if not animator then return end
 
-    animator.AnimationPlayed:Connect(function(animationTrack)
-        if movedata[animationTrack.Animation.AnimationId] then
-            move = movedata[animationTrack.Animation.AnimationId]
-            if move.Wait and LocalPlayer.Character then
-                coroutine.wrap(function()
-                    task.wait(move.Wait / 1000)
-                    if (LocalPlayer.Character.HumanoidRootPart.CFrame.Position - character.HumanoidRootPart.CFrame.Position).Magnitude <= move.Range then
-                        local args = {
-                            [1] = {
-                                [1] = {
-                                    ["Module"] = "Block",
-                                    ["Bool"] = true
-                                },
-                                [2] = "\5"
-                            }
-                        }
-                        game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack(args))
-                        task.wait(0.1)
-                        local args = {
-                            [1] = {
-                                [1] = {
-                                    ["Module"] = "Block",
-                                    ["Bool"] = false
-                                },
-                                [2] = "\5"
-                            }
-                        }
-                        game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack(args))
-                    end
-                end)()
-            end
-        end
-    end)
+	animator.AnimationPlayed:Connect(function(animationTrack)
+		if AutoParryEnabled then
+			if movedata[animationTrack.Animation.AnimationId] then
+				local move = movedata[animationTrack.Animation.AnimationId]
+				if move.Wait and LocalPlayer.Character then
+					coroutine.wrap(function()
+						task.wait(move.Wait / 1000 - PingCompensation and math.abs(Ping - 25) or 0)
+						if (LocalPlayer.Character.HumanoidRootPart.CFrame.Position - character.HumanoidRootPart.CFrame.Position).Magnitude <= move.Range then
+							local args = {
+								[1] = {
+									[1] = {
+										["Module"] = "Block",
+										["Bool"] = true
+									},
+									[2] = "\5"
+								}
+							}
+							game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack(args))
+							task.wait(0.1)
+							local args = {
+								[1] = {
+									[1] = {
+										["Module"] = "Block",
+										["Bool"] = false
+									},
+									[2] = "\5"
+								}
+							}
+							game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack(args))
+						end
+					end)()
+				end
+			end
+		end
+	end)
 end
 
 function onPlayerAdded(player)
-    player.CharacterAdded:Connect(onCharacterAdded)
-    if player.Character then
-        onCharacterAdded(player.Character)
-    end
+	player.CharacterAdded:Connect(onCharacterAdded)
+	if player.Character then
+		onCharacterAdded(player.Character)
+	end
 end
 
 for _, player in ipairs(Players:GetPlayers()) do
-    if player ~= Players.LocalPlayer then
-        onPlayerAdded(player)
-    end
+	if player ~= Players.LocalPlayer then
+		onPlayerAdded(player)
+	end
 end
 
 Players.PlayerAdded:Connect(onPlayerAdded)
