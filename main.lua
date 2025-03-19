@@ -1,385 +1,256 @@
-local HttpService = game:GetService("HttpService")
-
--- JSON MODULE START
-
-local json = { _version = "0.1.2" }
-
-local encode
-
-local escape_char_map = {
-  [ "\\" ] = "\\",
-  [ "\"" ] = "\"",
-  [ "\b" ] = "b",
-  [ "\f" ] = "f",
-  [ "\n" ] = "n",
-  [ "\r" ] = "r",
-  [ "\t" ] = "t",
+movedata = {
+	['rbxassetid://77200481731064'] = {RepeatCount = 0;Name = '1';RepeatDelay = 0;Range = 30;Wait = 290;},
+	['rbxassetid://90222174246856'] = {RepeatCount = 0;Name = '2';RepeatDelay = 0;Range = 30;Wait = 170;},
+	['rbxassetid://109153497237538'] = {RepeatCount = 0;Name = '3';RepeatDelay = 0;Range = 30;Wait = 190;},
+	['rbxassetid://77165655925697'] = {RepeatCount = 0;Name = '4';RepeatDelay = 0;Range = 30;Wait = 180;},
+	['rbxassetid://123196114390104'] = {RepeatCount = 0;Name = '5';RepeatDelay = 0;Range = 30;Wait = 210;},
+	['rbxassetid://79780873512551'] = {RepeatCount = 0;Name = 'aus1';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://91417655657970'] = {RepeatCount = 0;Name = 'aus2';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://124496925241237'] = {RepeatCount = 0;Name = 'aus3';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://97888761442444'] = {RepeatCount = 0;Name = 'aus4';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://130254051363204'] = {RepeatCount = 0;Name = 'aus lunge attack';RepeatDelay = 0;Range = 30;Wait = 350;},
+	['rbxassetid://110920960051584'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'aus x';RepeatDelay = 0;RepeatParryAmount = 20;DelayDistance = 0;Range = 30;Wait = 260;},
+	['rbxassetid://133676778221315'] = {RepeatCount = 0;Name = 'aus z cast';RepeatDelay = 0;Range = 30;Wait = 220;},
+	['rbxassetid://111882127396652'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Axe Kick';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://79981588130961'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Barrage';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 350;},
+	['rbxassetid://138044545828371'] = {RepeatCount = 0;RepeatParryDelay = 0;RepeatDelay = 0;Range = 30;Wait = 300;DelayDistance = 0;Name = 'BarrageSkill';RepeatParryAmount = 0;Hold = false;},
+	['rbxassetid://112387369480518'] = {RepeatCount = 0;Name = 'beak1';RepeatDelay = 0;Range = 30;Wait = 220;},
+	['rbxassetid://120459951639400'] = {RepeatCount = 0;Name = 'beak2';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://121050000257819'] = {RepeatCount = 0;Name = 'beak3';RepeatDelay = 0;Range = 30;Wait = 120;},
+	['rbxassetid://116301245600177'] = {RepeatCount = 0;Name = 'beak4';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://78213991536260'] = {RepeatCount = 0;Name = 'beak5';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://124170657036313'] = {RepeatCount = 0;Name = 'BiggerSlam';RepeatDelay = 0;Range = 30;Wait = 390;},
+	['rbxassetid://113483328429065'] = {RepeatCount = 0;Name = 'C';RepeatDelay = 0;Range = 30;Wait = 390;},
+	['rbxassetid://96240580568749'] = {RepeatCount = 0;Name = 'chishe1';RepeatDelay = 0;Range = 30;Wait = 100;},
+	['rbxassetid://78297239425049'] = {RepeatCount = 0;Name = 'chishe2';RepeatDelay = 0;Range = 30;Wait = 170;},
+	['rbxassetid://134047638406873'] = {RepeatCount = 0;Name = 'chishe3';RepeatDelay = 0;Range = 30;Wait = 130;},
+	['rbxassetid://106306160427852'] = {RepeatCount = 0;Name = 'chishe4';RepeatDelay = 0;Range = 30;Wait = 140;},
+	['rbxassetid://110738231926426'] = {RepeatCount = 0;Name = 'chishe5';RepeatDelay = 0;Range = 30;Wait = 160;},
+	['rbxassetid://107500740429380'] = {RepeatCount = 0;Name = 'ChisheC';RepeatDelay = 0;Range = 30;Wait = 460;},
+	['rbxassetid://113373203557133'] = {RepeatCount = 0;Name = 'ChisheX';RepeatDelay = 0;Range = 30;Wait = 170;},
+	['rbxassetid://109285759428857'] = {RepeatCount = 0;Name = 'ChisheZ';RepeatDelay = 0;Range = 30;Wait = 430;},
+	['rbxassetid://135835813606350'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'cleave1';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 350;},
+	['rbxassetid://103561209301954'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'cleave2';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 350;},
+	['rbxassetid://139400282938724'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'cleave3';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 350;},
+	['rbxassetid://98357517858626'] = {RepeatCount = 0;Name = 'Cleave crit';RepeatDelay = 0;Range = 30;Wait = 540;},
+	['rbxassetid://84286984142876'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'CorsaRework';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 300;},
+	['rbxassetid://98283641519215'] = {RepeatCount = 0;Name = 'Crit';RepeatDelay = 0;Range = 30;Wait = 610;},
+	['rbxassetid://126923665753961'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Crit_1';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 300;},
+	['rbxassetid://127566287157805'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'CriticalFix2';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 400;},
+	['rbxassetid://95223978004602'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'C Init';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 350;},
+	['rbxassetid://107868355016077'] = {RepeatCount = 0;Name = 'C Skill2';RepeatDelay = 0;Range = 30;Wait = 1800;},
+	['rbxassetid://96651052503322'] = {RepeatCount = 0;Name = 'Dagger Throw Passive';RepeatDelay = 0;Range = 30;Wait = -40;},
+	['rbxassetid://136225630152817'] = {RepeatCount = 0;Name = 'DashAttack';RepeatDelay = 0;Range = 30;Wait = 190;},
+	['rbxassetid://140472353306379'] = {RepeatCount = 0;Name = 'Dash Skill';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://87277155207058'] = {RepeatCount = 0;Name = 'Debilitating Slash ';RepeatDelay = 0;Range = 30;Wait = 110;},
+	['rbxassetid://135309318514442'] = {RepeatCount = 0;Name = 'DemonYamadaX';RepeatDelay = 0;Range = 30;Wait = 200;},
+	['rbxassetid://96389761265228'] = {RepeatCount = 0;Name = 'Demon Z';RepeatDelay = 0;Range = 30;Wait = 330;},
+	['rbxassetid://134903538230160'] = {RepeatCount = 0;RepeatParryDelay = 300;Name = 'Disorient';RepeatDelay = 0;RepeatParryAmount = 1;DelayDistance = 0;Range = 30;Wait = 300;},
+	['rbxassetid://103430086615689'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'dou1';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://133200348314646'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'dou2';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://137072596301637'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'dou3';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://104346885061572'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'dou4';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 170;},
+	['rbxassetid://135552671823399'] = {RepeatCount = 0;Name = 'DoujimaSlam';RepeatDelay = 0;Range = 30;Wait = -30;},
+	['rbxassetid://90460084897725'] = {RepeatCount = 0;Name = 'DoujimaSpin';RepeatDelay = 0;Range = 30;Wait = 270;},
+	['rbxassetid://109184942183064'] = {RepeatCount = 0;Name = 'dou crit';RepeatDelay = 0;Range = 30;Wait = 430;},
+	['rbxassetid://139882895533511'] = {RepeatCount = 0;Name = 'DownslamFollowup';RepeatDelay = 0;Range = 30;Wait = 860;},
+	['rbxassetid://83022911727660'] = {RepeatCount = 0;Name = 'Eto crit';RepeatDelay = 0;Range = 30;Wait = 350;},
+	['rbxassetid://81458429848274'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Fist1';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 0;},
+	['rbxassetid://131051682278134'] = {RepeatCount = 0;Name = 'Fist2';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://109123230222277'] = {RepeatCount = 0;Name = 'Fist3';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://89588139226485'] = {RepeatCount = 0;Name = 'Fist4';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://137684196851746'] = {RepeatCount = 0;Name = 'Fist5';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://87735609876920'] = {RepeatCount = 0;Name = 'Fists - 1';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://131385671108953'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'flip kick';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 40;Wait = 450;},
+	['rbxassetid://132546734612246'] = {RepeatCount = 0;Name = 'Flow action';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://98385414593823'] = {RepeatCount = 0;Name = 'Followup';RepeatDelay = 0;Range = 30;Wait = 170;},
+	['rbxassetid://125810707684008'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'gaw';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 300;},
+	['rbxassetid://124926828571060'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Ghoul bite';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 600;},
+	['rbxassetid://119850347232500'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'GrabInit';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 490;},
+	['rbxassetid://91554414015826'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Grinder';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 400;},
+	['rbxassetid://103463736964630'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Half kill attempt';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 500;},
+	['rbxassetid://110368664835385'] = {RepeatCount = 0;Name = 'hit1';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://95010299561530'] = {RepeatCount = 0;Name = 'hit1';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://98771209216846'] = {RepeatCount = 0;Name = 'hit1';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://139299396702735'] = {RepeatCount = 1;Name = 'hit2';RepeatDelay = 200;Range = 30;Wait = 250;},
+	['rbxassetid://114986752830080'] = {RepeatCount = 0;Name = 'hit2';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://131161290739036'] = {RepeatCount = 0;Name = 'hit2';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://123392788492194'] = {RepeatCount = 0;Name = 'hit3';RepeatDelay = 0;Range = 30;Wait = 90;},
+	['rbxassetid://126141375680416'] = {RepeatCount = 0;Name = 'hit3';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://122661360698160'] = {RepeatCount = 0;Name = 'hit3';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://104337999454796'] = {RepeatCount = 0;Name = 'hit4';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://77317789467088'] = {RepeatCount = 0;Name = 'hit4';RepeatDelay = 0;Range = 30;Wait = 200;},
+	['rbxassetid://125084555032360'] = {RepeatCount = 0;Name = 'hit5';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://75078726065204'] = {RepeatCount = 0;RepeatParryDelay = 0;RepeatDelay = 0;Range = 30;Wait = 150;DelayDistance = 0;Name = 'Infiltration';RepeatParryAmount = 0;Roll = true;Custom = false;},
+	['rbxassetid://130277667485774'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'InstantLunge';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://115413666205678'] = {RepeatCount = 0;Name = 'IXA1';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://129495651539604'] = {RepeatCount = 0;Name = 'IXA2';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://101523256677778'] = {RepeatCount = 0;Name = 'IXA3';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://128839194087258'] = {RepeatCount = 0;Name = 'IXA4';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://76467866872093'] = {RepeatCount = 0;Name = 'IxaRangeCrit';RepeatDelay = 0;Range = 30;Wait = 180;},
+	['rbxassetid://78887381717473'] = {RepeatCount = 0;Name = 'IXA_Thrust';RepeatDelay = 0;Range = 30;Wait = 410;},
+	['rbxassetid://130687440100798'] = {RepeatCount = 0;Name = 'IXA barrage cast';RepeatDelay = 0;Range = 30;Wait = 240;},
+	['rbxassetid://110240097445732'] = {RepeatCount = 0;Name = 'IXA crit1';RepeatDelay = 0;Range = 30;Wait = 170;},
+	['rbxassetid://118233181584094'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'IXA Thrust action';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 220;},
+	['rbxassetid://78854925472750'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Jason1';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 200;},
+	['rbxassetid://125985327613003'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Jason2';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = -50;},
+	['rbxassetid://83183690291105'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Jason3';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 200;},
+	['rbxassetid://139358065129445'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Jason4';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 200;},
+	['rbxassetid://128101625557631'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Jason5';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 200;},
+	['rbxassetid://137780787423425'] = {RepeatCount = 0;Name = 'Jason Z';RepeatDelay = 0;Range = 30;Wait = 330;},
+	['rbxassetid://134809434589356'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Kaen wannabe';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 35;Wait = 450;},
+	['rbxassetid://115126886859402'] = {RepeatCount = 0;Name = 'kajiri1';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://116238600074144'] = {RepeatCount = 0;Name = 'kajiri2';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://77659049501128'] = {RepeatCount = 0;Name = 'kajiri3';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://82130174183873'] = {RepeatCount = 0;Name = 'kajiri4';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://134101600310736'] = {RepeatCount = 0;Name = 'KajiriAttack';RepeatDelay = 0;Range = 30;Wait = -20;},
+	['rbxassetid://125001482194702'] = {RepeatCount = 0;Name = 'Kajirigrabidk';RepeatDelay = 0;Range = 30;Wait = 220;},
+	['rbxassetid://130077418131222'] = {RepeatCount = 0;Name = 'KajiriScatter';RepeatDelay = 0;Range = 30;Wait = 220;},
+	['rbxassetid://78047711237192'] = {RepeatCount = 0;Name = 'KajiriSlamDown';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://105589945317363'] = {RepeatCount = 0;Name = 'kajiri Z';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://124343869615532'] = {RepeatCount = 0;Name = 'katana1';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://124184099417502'] = {RepeatCount = 0;Name = 'katana2';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://132904283786634'] = {RepeatCount = 0;Name = 'katana3';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://91532107165998'] = {RepeatCount = 0;Name = 'katana4';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://106867803794428'] = {RepeatCount = 0;Name = 'kuai1';RepeatDelay = 0;Range = 30;Wait = 60;},
+	['rbxassetid://100434572913975'] = {RepeatCount = 0;Name = 'kuai2';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://134071135239015'] = {RepeatCount = 0;Name = 'kuai3';RepeatDelay = 0;Range = 30;Wait = 190;},
+	['rbxassetid://90521401898889'] = {RepeatCount = 0;Name = 'kuai4';RepeatDelay = 0;Range = 30;Wait = 170;},
+	['rbxassetid://108307424389592'] = {RepeatCount = 0;Name = 'kuai5';RepeatDelay = 0;Range = 30;Wait = 160;},
+	['rbxassetid://130560592953206'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'kuai crit';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://99915059516084'] = {RepeatCount = 0;Name = 'kuai skill1 cast';RepeatDelay = 0;Range = 30;Wait = 160;},
+	['rbxassetid://101613783270135'] = {RepeatCount = 1;RepeatParryDelay = 0;Name = 'kuai skill2';RepeatDelay = 200;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 440;},
+	['rbxassetid://72678012629652'] = {RepeatCount = 0;Name = 'kuai skill3';RepeatDelay = 0;Range = 30;Wait = 210;},
+	['rbxassetid://97870196303383'] = {RepeatCount = 0;Name = 'Leaping Strike';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://99762577752557'] = {RepeatCount = 0;Name = 'Leg Sweep';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://91066171406248'] = {RepeatCount = 0;Name = 'Lightning lunge';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://125273732099482'] = {RepeatCount = 0;Name = 'Lunge';RepeatDelay = 0;Range = 30;Wait = 220;},
+	['rbxassetid://119065419146950'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'M1 - 1';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://136761323860583'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'M1 - 2';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://127813492491875'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'M1 - 3';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://134741686910618'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'M1 - 4';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://135205073126877'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'M1 1';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://82068830027727'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'M1 2';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://92214982692498'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'M1 3';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://109500654652931'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'M1 4';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://90597596100338'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'M1 5';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://120830339429568'] = {RepeatCount = 0;Name = 'Mason';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://79913467941771'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Massacre';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 220;},
+	['rbxassetid://99511332362280'] = {RepeatCount = 0;Name = 'MOVE1';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://118816187211996'] = {RepeatCount = 0;Name = 'Narukami - 1';RepeatDelay = 0;Range = 30;Wait = 80;},
+	['rbxassetid://102535173492586'] = {RepeatCount = 0;Name = 'Narukami - 3';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://100558480169185'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'NewFistAerial';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 200;},
+	['rbxassetid://108197299905495'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'new tail hit1';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 220;},
+	['rbxassetid://114558724693893'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'new tail hit2';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://72464788731730'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'new tail hit3';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://74422320699083'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'new tail hit4';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://98582715122328'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'new tail hit5';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://105442988085026'] = {RepeatCount = 0;Name = 'NikoBarrage';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://111909089248577'] = {RepeatCount = 0;Name = 'NishioPull';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://99963342174936'] = {RepeatCount = 2;Name = 'Nutcrack1';RepeatDelay = 200;Range = 30;Wait = 190;},
+	['rbxassetid://123123044774364'] = {RepeatCount = 0;Name = 'Nutcrack2';RepeatDelay = 0;Range = 30;Wait = 120;},
+	['rbxassetid://108458212372937'] = {RepeatCount = 0;Name = 'Nutcrack3';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://134488256445396'] = {RepeatCount = 0;Name = 'Nutcrack4';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://78797347094985'] = {RepeatCount = 0;Name = 'Nutcrack5';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://120819611310918'] = {RepeatCount = 0;Name = 'Roaring thunder cast';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://88509112744612'] = {RepeatCount = 0;Name = 'ScorpionAttack';RepeatDelay = 0;Range = 30;Wait = 710;},
+	['rbxassetid://121109139209671'] = {RepeatCount = 1;RepeatParryDelay = 0;Name = 'scorpV2 m1-1';RepeatDelay = 200;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://120354402053029'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'scorpV2 m1-2';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://108012620140199'] = {RepeatCount = 0;Name = 'scorpV2 m1-3';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://131074884814797'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'scorpV2 m1-4';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 150;},
+	['rbxassetid://87004016130630'] = {RepeatCount = 0;Name = 'ser1';RepeatDelay = 0;Range = 30;Wait = 200;},
+	['rbxassetid://131725694254635'] = {RepeatCount = 0;Name = 'ser2';RepeatDelay = 0;Range = 30;Wait = 190;},
+	['rbxassetid://125049330153289'] = {RepeatCount = 0;Name = 'ser3';RepeatDelay = 0;Range = 30;Wait = 170;},
+	['rbxassetid://71491979500146'] = {RepeatCount = 0;Name = 'ser4';RepeatDelay = 0;Range = 30;Wait = 110;},
+	['rbxassetid://116706902543424'] = {RepeatCount = 0;Name = 'Serrated C';RepeatDelay = 0;Range = 30;Wait = 410;},
+	['rbxassetid://123728918222864'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'serrated crit';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://124766932801835'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Serrated X';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 170;},
+	['rbxassetid://87087952781021'] = {RepeatCount = 0;Name = 'serrated Z';RepeatDelay = 0;Range = 30;Wait = 210;},
+	['rbxassetid://90448243904946'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'ShardBarrage Air';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 45;Wait = 550;},
+	['rbxassetid://106535138040115'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Shredder2';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 500;},
+	['rbxassetid://138228123826571'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Sorteggio Lampo';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://114126220009836'] = {RepeatCount = 3;RepeatParryDelay = 0;Name = 'spear2';RepeatDelay = 200;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://115882469124985'] = {RepeatCount = 3;RepeatParryDelay = 0;Name = 'spear3';RepeatDelay = 200;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://120664443221590'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'spear4';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 250;},
+	['rbxassetid://113848079779223'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Spinning Hook Kick';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 140;},
+	['rbxassetid://70738136253672'] = {RepeatCount = 0;Name = 'spin spin2';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://94049296655188'] = {RepeatCount = 0;Name = 'Splitting death';RepeatDelay = 0;Range = 30;Wait = 1320;},
+	['rbxassetid://115340718314209'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'TailSlam';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 300;},
+	['rbxassetid://129618429137267'] = {RepeatCount = 0;Name = 'Triple Kick';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://135872625391687'] = {RepeatCount = 0;RepeatParryDelay = 300;RepeatDelay = 0;Range = 40;Wait = 300;DelayDistance = 0;Name = 'UkakuShardShootGroun';RepeatParryAmount = 1;Hold = false;},
+	['rbxassetid://74706986010083'] = {RepeatCount = 0;Name = 'universal fifth';RepeatDelay = 0;Range = 30;Wait = 130;},
+	['rbxassetid://126930390220804'] = {RepeatCount = 0;RepeatParryDelay = 0;Name = 'Uppercut Part 1';RepeatDelay = 0;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 200;},
+	['rbxassetid://123818970722547'] = {RepeatCount = 0;RepeatParryDelay = 300;Name = 'X';RepeatDelay = 0;RepeatParryAmount = 1;DelayDistance = 0;Range = 30;Wait = 300;},
+	['rbxassetid://138545708561292'] = {RepeatCount = 0;Name = 'X Skill';RepeatDelay = 0;Range = 30;Wait = 230;},
+	['rbxassetid://111230499786651'] = {RepeatCount = 0;Name = 'Yamada - 1';RepeatDelay = 0;Range = 30;Wait = 170;},
+	['rbxassetid://135652259836955'] = {RepeatCount = 0;Name = 'yomo1';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://135900749451957'] = {RepeatCount = 0;Name = 'yomo2';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://81633765878584'] = {RepeatCount = 0;Name = 'yomo3';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://108984564775659'] = {RepeatCount = 0;Name = 'yomo4';RepeatDelay = 0;Range = 30;Wait = 150;},
+	['rbxassetid://98932916989863'] = {RepeatCount = 0;RepeatParryDelay = 500;Name = 'Z';RepeatDelay = 0;RepeatParryAmount = 1;DelayDistance = 0;Range = 30;Wait = 400;},
+	['rbxassetid://116952479079386'] = {RepeatCount = 6;RepeatParryDelay = 0;Name = 'Z Skill';RepeatDelay = 200;RepeatParryAmount = 0;DelayDistance = 0;Range = 30;Wait = 1410;},
+	['rbxassetid://99157378634706'] = {RepeatCount = 0;Name = 'Z Spin Slash';RepeatDelay = 0;Range = 30;Wait = 180;},
+	['rbxassetid://136449717558100'] = {RepeatCount = 0;Name = ' 2 handed flouris re';RepeatDelay = 0;Range = 30;Wait = 140;},
 }
 
-local escape_char_map_inv = { [ "/" ] = "/" }
-for k, v in pairs(escape_char_map) do
-  escape_char_map_inv[v] = k
-end
+print("Loading")
 
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
-local function escape_char(c)
-  return "\\" .. (escape_char_map[c] or string.format("u%04x", c:byte()))
-end
+local function onCharacterAdded(character)
+    local humanoid = character:FindFirstChildOfClass("Humanoid")
+    if not humanoid then return end
 
+    local animator = humanoid:FindFirstChildOfClass("Animator")
+    if not animator then return end
 
-local function encode_nil(val)
-  return "null"
-end
-
-
-local function encode_table(val, stack)
-  local res = {}
-  stack = stack or {}
-
-  -- Circular reference?
-  if stack[val] then error("circular reference") end
-
-  stack[val] = true
-
-  if rawget(val, 1) ~= nil or next(val) == nil then
-    -- Treat as array -- check keys are valid and it is not sparse
-    local n = 0
-    for k in pairs(val) do
-      if type(k) ~= "number" then
-        error("invalid table: mixed or invalid key types")
-      end
-      n = n + 1
-    end
-    if n ~= #val then
-      error("invalid table: sparse array")
-    end
-    -- Encode
-    for i, v in ipairs(val) do
-      table.insert(res, encode(v, stack))
-    end
-    stack[val] = nil
-    return "[" .. table.concat(res, ",") .. "]"
-
-  else
-    -- Treat as an object
-    for k, v in pairs(val) do
-      if type(k) ~= "string" then
-        error("invalid table: mixed or invalid key types")
-      end
-      table.insert(res, encode(k, stack) .. ":" .. encode(v, stack))
-    end
-    stack[val] = nil
-    return "{" .. table.concat(res, ",") .. "}"
-  end
-end
-
-
-local function encode_string(val)
-  return '"' .. val:gsub('[%z\1-\31\\"]', escape_char) .. '"'
-end
-
-
-local function encode_number(val)
-  -- Check for NaN, -inf and inf
-  if val ~= val or val <= -math.huge or val >= math.huge then
-    error("unexpected number value '" .. tostring(val) .. "'")
-  end
-  return string.format("%.14g", val)
-end
-
-
-local type_func_map = {
-  [ "nil"     ] = encode_nil,
-  [ "table"   ] = encode_table,
-  [ "string"  ] = encode_string,
-  [ "number"  ] = encode_number,
-  [ "boolean" ] = tostring,
-}
-
-
-encode = function(val, stack)
-  local t = type(val)
-  local f = type_func_map[t]
-  if f then
-    return f(val, stack)
-  end
-  error("unexpected type '" .. t .. "'")
-end
-
-
-function json.encode(val)
-  return ( encode(val) )
-end
-
-
--------------------------------------------------------------------------------
--- Decode
--------------------------------------------------------------------------------
-
-local parse
-
-local function create_set(...)
-  local res = {}
-  for i = 1, select("#", ...) do
-    res[ select(i, ...) ] = true
-  end
-  return res
-end
-
-local space_chars   = create_set(" ", "\t", "\r", "\n")
-local delim_chars   = create_set(" ", "\t", "\r", "\n", "]", "}", ",")
-local escape_chars  = create_set("\\", "/", '"', "b", "f", "n", "r", "t", "u")
-local literals      = create_set("true", "false", "null")
-
-local literal_map = {
-  [ "true"  ] = true,
-  [ "false" ] = false,
-  [ "null"  ] = nil,
-}
-
-
-local function next_char(str, idx, set, negate)
-  for i = idx, #str do
-    if set[str:sub(i, i)] ~= negate then
-      return i
-    end
-  end
-  return #str + 1
-end
-
-
-local function decode_error(str, idx, msg)
-  local line_count = 1
-  local col_count = 1
-  for i = 1, idx - 1 do
-    col_count = col_count + 1
-    if str:sub(i, i) == "\n" then
-      line_count = line_count + 1
-      col_count = 1
-    end
-  end
-  error( string.format("%s at line %d col %d", msg, line_count, col_count) )
-end
-
-
-local function codepoint_to_utf8(n)
-  -- http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=iws-appendixa
-  local f = math.floor
-  if n <= 0x7f then
-    return string.char(n)
-  elseif n <= 0x7ff then
-    return string.char(f(n / 64) + 192, n % 64 + 128)
-  elseif n <= 0xffff then
-    return string.char(f(n / 4096) + 224, f(n % 4096 / 64) + 128, n % 64 + 128)
-  elseif n <= 0x10ffff then
-    return string.char(f(n / 262144) + 240, f(n % 262144 / 4096) + 128,
-                       f(n % 4096 / 64) + 128, n % 64 + 128)
-  end
-  error( string.format("invalid unicode codepoint '%x'", n) )
-end
-
-
-local function parse_unicode_escape(s)
-  local n1 = tonumber( s:sub(1, 4),  16 )
-  local n2 = tonumber( s:sub(7, 10), 16 )
-   -- Surrogate pair?
-  if n2 then
-    return codepoint_to_utf8((n1 - 0xd800) * 0x400 + (n2 - 0xdc00) + 0x10000)
-  else
-    return codepoint_to_utf8(n1)
-  end
-end
-
-
-local function parse_string(str, i)
-  local res = ""
-  local j = i + 1
-  local k = j
-
-  while j <= #str do
-    local x = str:byte(j)
-
-    if x < 32 then
-      decode_error(str, j, "control character in string")
-
-    elseif x == 92 then -- `\`: Escape
-      res = res .. str:sub(k, j - 1)
-      j = j + 1
-      local c = str:sub(j, j)
-      if c == "u" then
-        local hex = str:match("^[dD][89aAbB]%x%x\\u%x%x%x%x", j + 1)
-                 or str:match("^%x%x%x%x", j + 1)
-                 or decode_error(str, j - 1, "invalid unicode escape in string")
-        res = res .. parse_unicode_escape(hex)
-        j = j + #hex
-      else
-        if not escape_chars[c] then
-          decode_error(str, j - 1, "invalid escape char '" .. c .. "' in string")
+    animator.AnimationPlayed:Connect(function(animationTrack)
+        if movedata[animationTrack.Animation.AnimationId] then
+            move = movedata[animationTrack.Animation.AnimationId]
+            if move.Wait and LocalPlayer.Character then
+                coroutine.wrap(function()
+                    task.wait(move.Wait / 1000)
+                    if (LocalPlayer.Character.HumanoidRootPart.CFrame.Position - character.HumanoidRootPart.CFrame.Position).Magnitude <= move.Range then
+                        local args = {
+                            [1] = {
+                                [1] = {
+                                    ["Module"] = "Block",
+                                    ["Bool"] = true
+                                },
+                                [2] = "\5"
+                            }
+                        }
+                        game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack(args))
+                        task.wait(0.1)
+                        local args = {
+                            [1] = {
+                                [1] = {
+                                    ["Module"] = "Block",
+                                    ["Bool"] = false
+                                },
+                                [2] = "\5"
+                            }
+                        }
+                        game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack(args))
+                    end
+                end)()
+            end
         end
-        res = res .. escape_char_map_inv[c]
-      end
-      k = j + 1
+    end)
+end
 
-    elseif x == 34 then -- `"`: End of string
-      res = res .. str:sub(k, j - 1)
-      return res, j + 1
+function onPlayerAdded(player)
+    player.CharacterAdded:Connect(onCharacterAdded)
+    if player.Character then
+        onCharacterAdded(player.Character)
     end
-
-    j = j + 1
-  end
-
-  decode_error(str, i, "expected closing quote for string")
 end
 
-
-local function parse_number(str, i)
-  local x = next_char(str, i, delim_chars)
-  local s = str:sub(i, x - 1)
-  local n = tonumber(s)
-  if not n then
-    decode_error(str, i, "invalid number '" .. s .. "'")
-  end
-  return n, x
-end
-
-
-local function parse_literal(str, i)
-  local x = next_char(str, i, delim_chars)
-  local word = str:sub(i, x - 1)
-  if not literals[word] then
-    decode_error(str, i, "invalid literal '" .. word .. "'")
-  end
-  return literal_map[word], x
-end
-
-
-local function parse_array(str, i)
-  local res = {}
-  local n = 1
-  i = i + 1
-  while 1 do
-    local x
-    i = next_char(str, i, space_chars, true)
-    -- Empty / end of array?
-    if str:sub(i, i) == "]" then
-      i = i + 1
-      break
+for _, player in ipairs(Players:GetPlayers()) do
+    if player ~= Players.LocalPlayer then
+        onPlayerAdded(player)
     end
-    -- Read token
-    x, i = parse(str, i)
-    res[n] = x
-    n = n + 1
-    -- Next token
-    i = next_char(str, i, space_chars, true)
-    local chr = str:sub(i, i)
-    i = i + 1
-    if chr == "]" then break end
-    if chr ~= "," then decode_error(str, i, "expected ']' or ','") end
-  end
-  return res, i
 end
 
-
-local function parse_object(str, i)
-  local res = {}
-  i = i + 1
-  while 1 do
-    local key, val
-    i = next_char(str, i, space_chars, true)
-    -- Empty / end of object?
-    if str:sub(i, i) == "}" then
-      i = i + 1
-      break
-    end
-    -- Read key
-    if str:sub(i, i) ~= '"' then
-      decode_error(str, i, "expected string for key")
-    end
-    key, i = parse(str, i)
-    -- Read ':' delimiter
-    i = next_char(str, i, space_chars, true)
-    if str:sub(i, i) ~= ":" then
-      decode_error(str, i, "expected ':' after key")
-    end
-    i = next_char(str, i + 1, space_chars, true)
-    -- Read value
-    val, i = parse(str, i)
-    -- Set
-    res[key] = val
-    -- Next token
-    i = next_char(str, i, space_chars, true)
-    local chr = str:sub(i, i)
-    i = i + 1
-    if chr == "}" then break end
-    if chr ~= "," then decode_error(str, i, "expected '}' or ','") end
-  end
-  return res, i
-end
-
-
-local char_func_map = {
-  [ '"' ] = parse_string,
-  [ "0" ] = parse_number,
-  [ "1" ] = parse_number,
-  [ "2" ] = parse_number,
-  [ "3" ] = parse_number,
-  [ "4" ] = parse_number,
-  [ "5" ] = parse_number,
-  [ "6" ] = parse_number,
-  [ "7" ] = parse_number,
-  [ "8" ] = parse_number,
-  [ "9" ] = parse_number,
-  [ "-" ] = parse_number,
-  [ "t" ] = parse_literal,
-  [ "f" ] = parse_literal,
-  [ "n" ] = parse_literal,
-  [ "[" ] = parse_array,
-  [ "{" ] = parse_object,
-}
-
-
-parse = function(str, idx)
-  local chr = str:sub(idx, idx)
-  local f = char_func_map[chr]
-  if f then
-    return f(str, idx)
-  end
-  decode_error(str, idx, "unexpected character '" .. chr .. "'")
-end
-
-
-function json.decode(str)
-  if type(str) ~= "string" then
-    error("expected argument of type string, got " .. type(str))
-  end
-  local res, idx = parse(str, next_char(str, 1, space_chars, true))
-  idx = next_char(str, idx, space_chars, true)
-  if idx <= #str then
-    decode_error(str, idx, "trailing garbage")
-  end
-  return res
-end
-
--- JSON MODULE END
-
-local function fetchAndParseJSON(url)
-    local jsonData = HttpService:GetAsync(url)
-    local parsedData = json.decode(jsonData)
-    return parsedData
-end
-
--- Example URL (replace with your actual URL to JSON data)
-local dataUrl = "https://github.com/oliverbeetle11/ghoulRE/tree/main/config/1.json"
-
--- Fetch and handle the JSON data
-local data = fetchAndParseJSON(dataUrl)
-
--- Example of using the data
-if data then
-    print("Data fetched and parsed successfully!")
-    for key, value in pairs(data) do
-        print(key, value)
-    end
-else
-    print("Failed to fetch or parse JSON data")
-end
+Players.PlayerAdded:Connect(onPlayerAdded)
