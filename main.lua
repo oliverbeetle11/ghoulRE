@@ -272,7 +272,7 @@ movedata = {
 ['rbxassetid://136449717558100'] = {RepeatCount = 0;Name = ' 2 handed flouris re';RepeatDelay = 0;Range = 30;Wait = 140;},
 }
 
-print("loading beetle's ap ui")
+print("loading beetle's ap ui - ver 0.01t")
 
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
