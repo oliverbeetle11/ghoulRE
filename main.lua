@@ -344,7 +344,6 @@ local PingConnection = RunService.Heartbeat:Connect(function(dt)
 	if elapsedTime // 3 then
 		elapsedTime -= 3
 		Ping = LocalPlayer:GetNetworkPing() * 2000
-		print(Ping)
 	end
 end)
 
