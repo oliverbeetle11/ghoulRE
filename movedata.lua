@@ -271,3 +271,4 @@ movedata = {
 ['rbxassetid://99157378634706'] = {RepeatCount = 0;Name = 'Z Spin Slash';RepeatDelay = 0;Range = 30;Wait = 180;},
 ['rbxassetid://136449717558100'] = {RepeatCount = 0;Name = ' 2 handed flouris re';RepeatDelay = 0;Range = 30;Wait = 140;},
 }
+return movedata
