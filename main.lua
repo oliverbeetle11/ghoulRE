@@ -1,237 +1,132 @@
-movedata = loadstring(game:HttpGet('https://raw.githubusercontent.com/oliverbeetle11/ghoulRE/refs/heads/main/movedata.lua'))()
-
-local UserInputService = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 
+local repo = 'https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/'
+local movedata = loadstring(game:HttpGet('https://raw.githubusercontent.com/oliverbeetle11/ghoulRE/refs/heads/main/movedata.lua'))()
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/oliverbeetle11/ghoulRE/refs/heads/main/library.lua'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
+local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+
 local LocalPlayer = Players.LocalPlayer
-local Mouse = LocalPlayer:GetMouse()
 
-local ScreenGui = Instance.new("ScreenGui", LocalPlayer.PlayerGui)
-local MainFrame = Instance.new("Frame", ScreenGui)
-local Topbar = Instance.new("Frame", MainFrame)
+local Window = Library:CreateWindow({
+	Title = 'Veritas Hub | v0.01t',
+	Center = true,
+	AutoShow = true,
+	TabPadding = 8,
+	MenuFadeTime = 0.2
+})
 
-ScreenGui.ResetOnSpawn = false
-ScreenGui.IgnoreGuiInset = true
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
+local Tabs = {
+	['Auto Parry'] = Window:AddTab('Auto Parry'),
+	Settings = Window:AddTab('Settings'),
+}
 
-MainFrame.BackgroundColor3 = Color3.fromRGB(15,15,15)
-MainFrame.Position = UDim2.new(0.5,0,0.5,0)
-MainFrame.Size = UDim2.new(0,150,0,88)
-MainFrame.AnchorPoint = Vector2.new(0,-0.5)
+local LeftGroupBox = Tabs['Auto Parry']:AddLeftGroupbox('Auto Parry')
 
-Topbar.BackgroundColor3 = Color3.fromRGB(0,0,0)
-Topbar.Size = UDim2.new(0,150,0,16)
+LeftGroupBox:AddToggle('AutoParry', {
+	Text = 'Auto Parry',
+	Default = false,
+})
 
-local UIStroke = Instance.new("UIStroke", MainFrame)
-UIStroke.Color = Color3.new(1,1,1)
-local UIStroke = UIStroke:Clone()
-UIStroke.Parent = Topbar
-
-local DefaultTextLabel = Instance.new("TextLabel", MainFrame)
-DefaultTextLabel.BackgroundTransparency = 1
-DefaultTextLabel.Size = UDim2.new(0,75,0,17)
-DefaultTextLabel.ZIndex = 5
-DefaultTextLabel.TextColor3 = Color3.new(1,1,1)
-DefaultTextLabel.TextXAlignment = Enum.TextXAlignment.Left
-DefaultTextLabel.TextYAlignment = Enum.TextYAlignment.Top
-DefaultTextLabel.TextStrokeTransparency = 0
-
-local Title = DefaultTextLabel:Clone()
-local APLabel = DefaultTextLabel:Clone()
-local APBindLabel = DefaultTextLabel:Clone()
-local PingLabel = DefaultTextLabel:Clone()
-local UIBindLabel = DefaultTextLabel:Clone()
-
-Title.Size = UDim2.new(0,150,0,6)
-
-Title.Parent = MainFrame
-APLabel.Parent = MainFrame
-APBindLabel.Parent = MainFrame
-PingLabel.Parent = MainFrame
-UIBindLabel.Parent = MainFrame
-
-APLabel.Position = UDim2.new(0,0,0,15)
-APBindLabel.Position = UDim2.new(0,0,0,50)
-PingLabel.Position = UDim2.new(0,0,0,33)
-UIBindLabel.Position = UDim2.new(0,0,0,67)
-
-Title.Text = "beetle's ap"
-APLabel.Text = "Autoparry"
-APBindLabel.Text = "AP keybind"
-PingLabel.Text = "Ping comp."
-UIBindLabel.Text = "UI keybind"
-
-DefaultTextLabel:Destroy()
-
-local DefaultUIPadding = Instance.new("UIPadding", Title)
-DefaultUIPadding.PaddingLeft = UDim.new(0.1,0)
-DefaultUIPadding.PaddingTop = UDim.new(0.2,0)
-
-local UIPadding = DefaultUIPadding:Clone()
-UIPadding.Parent = APLabel
-local UIPadding = DefaultUIPadding:Clone()
-UIPadding.Parent = APBindLabel
-local UIPadding = DefaultUIPadding:Clone()
-UIPadding.Parent = PingLabel
-local UIPadding = DefaultUIPadding:Clone()
-UIPadding.Parent = UIBindLabel
-
-DefaultUIPadding.PaddingLeft = UDim.new(0.02,0)
-
-local APButton = Instance.new("TextButton", MainFrame)
-local PingButton = Instance.new("TextButton", MainFrame)
-local APBind = Instance.new("TextBox", MainFrame)
-local UIBind = Instance.new("TextBox", MainFrame)
-
-APButton.BackgroundColor3 = Color3.new(0,0,0)
-APButton.BorderColor3 = Color3.new(1,1,1)
-APButton.BorderSizePixel = 1
-APButton.Position = UDim2.new(0,103,0,21)
-APButton.Size = UDim2.new(0,40,0,11)
-APButton.Text = "OFF"
-APButton.TextColor3 = Color3.new(1,1,1)
-
-PingButton.BackgroundColor3 = Color3.new(0,0,0)
-PingButton.BorderColor3 = Color3.new(1,1,1)
-PingButton.BorderSizePixel = 1
-PingButton.Position = UDim2.new(0,103,0,38)
-PingButton.Size = UDim2.new(0,40,0,11)
-PingButton.Text = "OFF"
-PingButton.TextColor3 = Color3.new(1,1,1)
-
-APBind.BackgroundColor3 = Color3.new(0,0,0)
-APBind.BorderColor3 = Color3.new(1,1,1)
-APBind.BorderSizePixel = 1
-APBind.Position = UDim2.new(0,103,0,56)
-APBind.Size = UDim2.new(0,40,0,11)
-APBind.TextColor3 = Color3.new(1,1,1)
-APBind.PlaceholderText = "P"
-APBind.Text = "P"
-
-UIBind.BackgroundColor3 = Color3.new(0,0,0)
-UIBind.BorderColor3 = Color3.new(1,1,1)
-UIBind.BorderSizePixel = 1
-UIBind.Position = UDim2.new(0,103,0,73)
-UIBind.Size = UDim2.new(0,40,0,11)
-UIBind.TextColor3 = Color3.new(1,1,1)
-UIBind.PlaceholderText = "M"
-UIBind.Text = "M"
-
-local DragConnection
-Topbar.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		local OriginalFramePosition = MainFrame.AbsolutePosition
-		local MouseX, MouseY = Mouse.X, Mouse.Y
-		DragConnection = RunService.Heartbeat:Connect(function(dt)
-			MainFrame.Position = UDim2.new(0,OriginalFramePosition.X - MouseX + Mouse.X,0,OriginalFramePosition.Y - MouseY + Mouse.Y + 44)
-		end)
-	end
+Toggles.AutoParry:OnChanged(function()
+	print('AutoParry changed to:', Toggles.AutoParry.Value)
 end)
 
-Topbar.InputEnded:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		DragConnection:Disconnect()
+Toggles.AutoParry:AddKeyPicker('KeyPicker', {
+	Default = 'L',
+	SyncToggleState = true,
+
+	Mode = 'Toggle',
+
+	Text = 'Auto Parry Toggle',
+	NoUI = true,
+
+	Callback = function(Value)
+		print('[cb] Keybind clicked!', Value)
+	end,
+
+	ChangedCallback = function(New)
+		print('[cb] Keybind changed!', New)
 	end
+})
+
+LeftGroupBox:AddToggle('PingComp', { Text = 'Ping Compensation' });
+local Depbox = LeftGroupBox:AddDependencyBox();
+Depbox:AddToggle('CustomPing', { Text = 'Custom Ping Variable' });
+local SubDepbox = Depbox:AddDependencyBox();
+SubDepbox:AddSlider('CustomPingSlider', { Text = 'Custom Ping', Default = 50, Min = 0, Max = 250, Rounding = 0 });
+
+LeftGroupBox:AddToggle('CustomDelay', { Text = 'Custom Delay', Tooltip = 'Use if you experience more ping spikes' });
+local DelayDepox = LeftGroupBox:AddDependencyBox();
+DelayDepox:AddSlider('CustomDelaySlider', { Text = 'Custom Delay', Default = 50, Min = 0, Max = 250, Rounding = 0 });
+
+Depbox:SetupDependencies({
+	{ Toggles.PingComp, true }
+});
+
+SubDepbox:SetupDependencies({
+	{ Toggles.CustomPing, true }
+});
+
+DelayDepox:SetupDependencies({
+	{ Toggles.CustomDelay, true }
+});
+
+LeftGroupBox:AddDivider()
+LeftGroupBox:AddLabel("Additional Modifications")
+LeftGroupBox:AddToggle('DirectionCheck', { Text = 'Direction Check', Tooltip = '0.6 recommended' }); -- Add depobox that allows to tweak the cone
+local DirectionDepox = LeftGroupBox:AddDependencyBox();
+DirectionDepox:AddSlider('DirectionSlider', { Text = 'Direction Cone', Default = 0, Min = 0, Max = 1, Rounding = 2 });
+
+DirectionDepox:SetupDependencies({
+	{ Toggles.DirectionCheck, true }
+});
+
+LeftGroupBox:AddToggle('VelocityCheck', { Text = 'Velocity Check' });
+LeftGroupBox:AddToggle('AutoFeint', { Text = 'Auto Feint' });
+
+local FrameTimer = tick()
+local FrameCounter = 0;
+local FPS = 60;
+
+local WatermarkConnection = game:GetService('RunService').RenderStepped:Connect(function()
+	FrameCounter += 1;
+
+	if (tick() - FrameTimer) >= 1 then
+		FPS = FrameCounter;
+		FrameTimer = tick();
+		FrameCounter = 0;
+	end;
+
+	Library:SetWatermark(('Veritas | v0.01t | %s fps | %s ms'):format(
+		math.floor(FPS),
+		math.floor(game:GetService('Stats').Network.ServerStatsItem['Data Ping']:GetValue())
+		));
+end);
+
+Library:OnUnload(function()
+	WatermarkConnection:Disconnect()
+
+	print('Unloaded!')
+	Library.Unloaded = true
 end)
 
-local APKeycode = Enum.KeyCode.P
-local UIKeycode = Enum.KeyCode.M
+local MenuGroup = Tabs['Settings']:AddLeftGroupbox('Menu')
 
-local AutoParryEnabled = false
-local PingCompensation = false
+MenuGroup:AddButton('Unload', function() Library:Unload() end)
+MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'End', NoUI = true, Text = 'Menu keybind' })
 
-local Ping = LocalPlayer:GetNetworkPing() * 2000
+Library.ToggleKeybind = Options.MenuKeybind
 
-local elapsedTime = 0
-local PingConnection = RunService.Heartbeat:Connect(function(dt)
-	elapsedTime += dt
-	if elapsedTime // 3 then
-		elapsedTime -= 3
-		Ping = LocalPlayer:GetNetworkPing() * 2000
-	end
-end)
-
-APButton.MouseButton1Click:Connect(function()
-	AutoParryEnabled = not AutoParryEnabled
-	if AutoParryEnabled then
-		APButton.BackgroundColor3 = Color3.new(1,1,1)
-		APButton.TextColor3 = Color3.new(0,0,0)
-		APButton.Text = "ON"
-	else
-		APButton.BackgroundColor3 = Color3.new(0,0,0)
-		APButton.TextColor3 = Color3.new(1,1,1)
-		APButton.Text = "OFF"
-	end
-end)
-
-PingButton.MouseButton1Click:Connect(function()
-	PingCompensation = not PingCompensation
-	if PingCompensation then
-		PingButton.BackgroundColor3 = Color3.new(1,1,1)
-		PingButton.TextColor3 = Color3.new(0,0,0)
-		PingButton.Text = "ON"
-	else
-		PingButton.BackgroundColor3 = Color3.new(0,0,0)
-		PingButton.TextColor3 = Color3.new(1,1,1)
-		PingButton.Text = "OFF"
-	end
-end)
-
-UserInputService.InputBegan:Connect(function(input, GPE)
-	if not GPE then
-		if input.KeyCode == APKeycode then
-			AutoParryEnabled = not AutoParryEnabled
-			if AutoParryEnabled then
-				APButton.BackgroundColor3 = Color3.new(1,1,1)
-				APButton.TextColor3 = Color3.new(0,0,0)
-				APButton.Text = "ON"
-			else
-				APButton.BackgroundColor3 = Color3.new(0,0,0)
-				APButton.TextColor3 = Color3.new(1,1,1)
-				APButton.Text = "OFF"
-			end
-		elseif input.KeyCode == UIKeycode then
-			ScreenGui.Enabled = not ScreenGui.Enabled
-		end
-	end
-end)
-
-APBind.FocusLost:Connect(function(enterPressed, input)
-	if enterPressed then
-		local success, response = pcall(function()
-			if Enum.KeyCode[string.upper(APBind.Text)] then
-				APKeycode = Enum.KeyCode[string.upper(APBind.Text)]
-				APBind.PlaceholderText = string.upper(APBind.Text)
-				APBind.Text = string.upper(APBind.Text)
-			end
-		end)
-		
-		if not success then
-			APBind.Text = APBind.PlaceholderText
-		end
-	else
-		APBind.Text = APBind.PlaceholderText
-	end
-end)
-
-UIBind.FocusLost:Connect(function(enterPressed, input)
-	if enterPressed then
-		local success, response = pcall(function()
-			if Enum.KeyCode[string.upper(UIBind.Text)] then
-				UIKeycode = Enum.KeyCode[string.upper(UIBind.Text)]
-				UIBind.PlaceholderText = string.upper(UIBind.Text)
-				UIBind.Text = string.upper(UIBind.Text)
-			end
-		end)
-
-		if not success then
-			UIBind.Text = UIBind.PlaceholderText
-		end
-	else
-		UIBind.Text = UIBind.PlaceholderText
-	end
-end)
+ThemeManager:SetLibrary(Library)
+SaveManager:SetLibrary(Library)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
+ThemeManager:SetFolder('MyScriptHub')
+SaveManager:SetFolder('MyScriptHub/Veritas')
+SaveManager:BuildConfigSection(Tabs['Settings'])
+ThemeManager:ApplyToTab(Tabs['Settings'])
+SaveManager:LoadAutoloadConfig()
 
 local function AnimationCheck(character, animationId)
 	local humanoid = character:FindFirstChildOfClass("Humanoid")
@@ -262,12 +157,12 @@ local function DirectionCheck(character1, character2)
 	local dotProduct1 = lookVector1:Dot(vectorBetween)
 	local dotProduct2 = lookVector2:Dot(-vectorBetween)
 
-	return dotProduct1 > 0.5 and dotProduct2 > 0.5
+	return dotProduct1 > Options.DirectionSlider.Value and dotProduct2 > Options.DirectionSlider.Value
 end
 
 local function onCharacterAdded(character)
 	if character == LocalPlayer.Character then return end
-	
+
 	local humanoid = character:FindFirstChildOfClass("Humanoid")
 	if not humanoid then return end
 
@@ -275,34 +170,32 @@ local function onCharacterAdded(character)
 	if not animator then return end
 
 	animator.AnimationPlayed:Connect(function(animationTrack)
-		if AutoParryEnabled then
+		if Toggles.AutoParry.Value then
 			if movedata[animationTrack.Animation.AnimationId] then
 				local move = movedata[animationTrack.Animation.AnimationId]
 				if move.Wait and LocalPlayer.Character then
 					coroutine.wrap(function()
-						task.wait(move.Wait / 1000 - (PingCompensation and (math.abs(Ping - 25)/1000) or 0) + 0.1)
-						if (LocalPlayer.Character.HumanoidRootPart.CFrame.Position - character.HumanoidRootPart.CFrame.Position).Magnitude <= move.Range and DirectionCheck(LocalPlayer.Character, character) and AnimationCheck(character, animationTrack.Animation.AnimationId) then
-							local args = {
-								[1] = {
-									[1] = {
-										["Module"] = "Block",
-										["Bool"] = true
-									},
-									[2] = "\5"
-								}
-							}
-							game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack(args))
+						local AccumulatedDelay = -0.1
+						if Toggles.PingComp.Value and Toggles.CustomPing.Value then
+							AccumulatedDelay += Options.CustomPingSlider.Value / 1000
+						elseif Toggles.PingComp.Value then
+							AccumulatedDelay += LocalPlayer:GetNetworkPing() * 2
+						end	
+						
+						if Toggles.CustomDelay.Value then
+							AccumulatedDelay += Options.CustomDelaySlider.Value / 1000
+						end
+						
+						task.wait(move.Wait / 1000 - AccumulatedDelay)
+
+						if Toggles.DirectionCheck.Value then
+							if not DirectionCheck(LocalPlayer.Character, character) then return end
+						end
+
+						if (LocalPlayer.Character.HumanoidRootPart.CFrame.Position - character.HumanoidRootPart.CFrame.Position).Magnitude <= move.Range and AnimationCheck(character, animationTrack.Animation.AnimationId) then
+							game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack({{{Module = "Block", Bool = true}, "\5"}}))
 							task.wait(0.1)
-							local args = {
-								[1] = {
-									[1] = {
-										["Module"] = "Block",
-										["Bool"] = false
-									},
-									[2] = "\5"
-								}
-							}
-							game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack(args))
+							game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack({{{Module = "Block", Bool = false}, "\5"}}))
 						end
 					end)()
 				end
