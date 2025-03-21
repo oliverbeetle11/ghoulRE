@@ -226,8 +226,16 @@ local function onCharacterAdded(character)
 
 						if (LocalPlayer.Character.HumanoidRootPart.CFrame.Position - character.HumanoidRootPart.CFrame.Position).Magnitude <= move.Range * Options.RangeModifier.Value and AnimationCheck(character, animationTrack.Animation.AnimationId) then
 							game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack({{{Module = "Block", Bool = true}, "\5"}}))
-							task.wait(0.1)
 							game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack({{{Module = "Block", Bool = false}, "\5"}}))
+
+							if move.RepeatParryAmount then
+								for i = 1, move.RepeatParryAmount do
+									task.delay(move.RepeatParryDelay, function()
+										game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack({{{Module = "Block", Bool = true}, "\5"}}))
+										game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack({{{Module = "Block", Bool = false}, "\5"}}))			
+									end)
+								end
+							end
 						end
 					end)()
 				end
