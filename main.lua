@@ -105,7 +105,8 @@ DelayDepox:SetupDependencies({
 
 LeftGroupBox:AddDivider()
 LeftGroupBox:AddLabel("Additional Modifications")
-LeftGroupBox:AddToggle('DirectionCheck', { Text = 'Direction Check', Tooltip = '0.6 recommended' }); -- Add depobox that allows to tweak the cone
+LeftGroupBox:AddSlider('RangeModifier', { Text = 'Range Modifier', Default = 1, Min = 0, Max = 2, Rounding = 2 });
+LeftGroupBox:AddToggle('DirectionCheck', { Text = 'Direction Check', Tooltip = '0.5 recommended' }); -- Add depobox that allows to tweak the cone
 local DirectionDepox = LeftGroupBox:AddDependencyBox();
 DirectionDepox:AddSlider('DirectionSlider', { Text = 'Direction Cone', Default = 0, Min = 0, Max = 1, Rounding = 2 });
 
@@ -223,7 +224,7 @@ local function onCharacterAdded(character)
 							if not DirectionCheck(LocalPlayer.Character, character) then return end
 						end
 
-						if (LocalPlayer.Character.HumanoidRootPart.CFrame.Position - character.HumanoidRootPart.CFrame.Position).Magnitude <= move.Range and AnimationCheck(character, animationTrack.Animation.AnimationId) then
+						if (LocalPlayer.Character.HumanoidRootPart.CFrame.Position - character.HumanoidRootPart.CFrame.Position).Magnitude <= move.Range * Options.RangeModifier.Value and AnimationCheck(character, animationTrack.Animation.AnimationId) then
 							game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack({{{Module = "Block", Bool = true}, "\5"}}))
 							task.wait(0.1)
 							game:GetService("ReplicatedStorage").Bridgenet2Main.dataRemoteEvent:FireServer(unpack({{{Module = "Block", Bool = false}, "\5"}}))
