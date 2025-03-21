@@ -1,3 +1,4 @@
+local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 
 local repo = 'https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/'
@@ -18,8 +19,35 @@ local Window = Library:CreateWindow({
 
 local Tabs = {
 	['Auto Parry'] = Window:AddTab('Auto Parry'),
+	['Teleport'] = Window:AddTab('Teleport'),
 	Settings = Window:AddTab('Settings'),
 }
+
+local TeleportLeftGroupBox = Tabs["Teleport"]:AddLeftGroupbox("Teleport")
+local PlayerDropdown = TeleportLeftGroupBox:AddDropdown('PlayerDropdown', {
+	SpecialType = 'Player',
+	Text = 'Players',
+
+	Callback = function(Value)
+		print('[cb] Player dropdown got changed:', Value)
+	end
+})
+local TeleportButton = TeleportLeftGroupBox:AddButton({
+	Text = 'Teleport',
+	Func = function()
+		if Options.PlayerDropdown.Value then
+			local Player = Options.PlayerDropdown.Valu
+			if Players:FindFirstChild(Player) then
+				if Player.Character and LocalPlayer.Character then
+					local Time = (LocalPlayer.Character.HumanoidRootPart.Postition - Player.Character.HumanoidRootPart.CFrame.Position).Magnitude / Options.TeleportSpeedSlider.Value
+					TweenService:Create(LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time, Enum.EasingStyle.Linear), {CFrame = Player.Character.HumanoidRootPart.CFrame})
+				end
+			end
+		end
+	end,
+	DoubleClick = false,
+})
+TeleportLeftGroupBox:AddSlider('TeleportSpeedSlider', { Text = 'Teleport Speed', Default = 100, Min = 50, Max = 500, Rounding = 0 });
 
 local LeftGroupBox = Tabs['Auto Parry']:AddLeftGroupbox('Auto Parry')
 
