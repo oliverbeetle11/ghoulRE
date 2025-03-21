@@ -36,11 +36,14 @@ local TeleportButton = TeleportLeftGroupBox:AddButton({
 	Text = 'Teleport',
 	Func = function()
 		if Options.PlayerDropdown.Value then
-			local Player = Options.PlayerDropdown.Valu
+			local Player = Options.PlayerDropdown.Value
 			if Players:FindFirstChild(Player) then
-				if Player.Character and LocalPlayer.Character then
-					local Time = (LocalPlayer.Character.HumanoidRootPart.Postition - Player.Character.HumanoidRootPart.CFrame.Position).Magnitude / Options.TeleportSpeedSlider.Value
-					TweenService:Create(LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time, Enum.EasingStyle.Linear), {CFrame = Player.Character.HumanoidRootPart.CFrame})
+				if workspace.Entities:FindFirstChild(Player) and LocalPlayer.Character then
+					local char = workspace.Entities:FindFirstChild(Player)
+					print(3)
+					local Time = (LocalPlayer.Character.HumanoidRootPart.CFrame.Position - char.HumanoidRootPart.CFrame.Position).Magnitude / Options.TeleportSpeedSlider.Value
+					print(Time)
+					TweenService:Create(LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time, Enum.EasingStyle.Linear), {CFrame = char.HumanoidRootPart.CFrame}):Play()
 				end
 			end
 		end
@@ -207,7 +210,7 @@ local function onCharacterAdded(character)
 						if Toggles.PingComp.Value and Toggles.CustomPing.Value then
 							AccumulatedDelay += Options.CustomPingSlider.Value / 1000
 						elseif Toggles.PingComp.Value then
-							AccumulatedDelay += LocalPlayer:GetNetworkPing() * 2
+							AccumulatedDelay += game:GetService('Stats').Network.ServerStatsItem['Data Ping']:GetValue() * 1000
 						end	
 						
 						if Toggles.CustomDelay.Value then
